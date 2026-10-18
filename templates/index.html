@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GUARDIAN AI | Digital Scam Protector</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                🛡
+            </div>
+
+            <div>
+                <h1>GUARDIAN AI</h1>
+
+                <p>
+                    Digital Scam Protector
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <nav>
+
+            <a
+                href="#analyzer"
+                class="nav-link active"
+            >
+                <span>⌕</span>
+                Analyzer
+            </a>
+
+
+            <a
+                href="#risk"
+                class="nav-link"
+            >
+                <span>◈</span>
+                Risk Overview
+            </a>
+
+
+            <a
+                href="#evidence"
+                class="nav-link"
+            >
+                <span>◫</span>
+                Evidence
+            </a>
+
+
+            <a
+                href="#memory"
+                class="nav-link"
+            >
+                <span>◌</span>
+                Memory
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="online-dot"></span>
+
+                <div>
+
+                    <strong>
+                        Protection Active
+                    </strong>
+
+                    <small>
+                        GUARDIAN AI Engine Online
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-version">
+
+                <span>
+                    AI Scam Detection
+                </span>
+
+                <span>
+                    v1.0
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="eyebrow">
+                    CYBERSECURITY COMMAND CENTER
+                </div>
+
+                <h2>
+                    Threat Analysis Dashboard
+                </h2>
+
+            </div>
+
+
+            <div class="system-pill">
+
+                <span class="online-dot"></span>
+
+                System Online
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             ANALYZER
+        ========================== -->
+
+        <section
+            class="hero"
+            id="analyzer"
+        >
+
+
+            <div class="hero-text">
+
+                <div class="hero-badge">
+
+                    ✦ AI-POWERED PROTECTION
+
+                </div>
+
+
+                <h2>
+
+                    Analyze suspicious
+                    <br>
+
+                    <span>
+                        messages instantly.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Paste a suspicious SMS, WhatsApp message,
+                    email, call transcript, payment request,
+                    or authority claim. GUARDIAN AI analyzes
+                    threat indicators and provides actionable
+                    safety recommendations.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ANALYZER CARD -->
+
+            <div class="analyzer-card">
+
+
+                <form
+                    id="analysisForm"
+                    action="/analyze"
+                    method="POST"
+                >
+
+
+                    <div class="input-top">
+
+
+                        <div class="input-heading">
+
+
+                            <div class="input-icon">
+                                ✎
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Suspicious Message
+                                </strong>
+
+                                <small>
+                                    Paste the complete message
+                                    for better analysis
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <span class="private-badge">
+
+                            🔒 PRIVATE ANALYSIS
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Paste suspicious message here..."
+                        required
+                    >{{ message if message else "" }}</textarea>
+
+
+
+                    {% if error %}
+
+                    <div class="error-box">
+
+                        !
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <div class="input-bottom">
+
+
+                        <span id="charCount">
+
+                            0 characters
+
+                        </span>
+
+
+
+                        <button
+                            class="analyze-button"
+                            type="submit"
+                            id="analyzeBtn"
+                        >
+
+                            <span>
+                                ◉
+                            </span>
+
+                            <b>
+                                Analyze Threat
+                            </b>
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+                </form>
+
+
+
+                <!-- QUICK TESTS -->
+
+                <div class="quick-tests">
+
+                    <span>
+                        Quick test:
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="setExample('bank')"
+                    >
+                        Bank / KYC
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onclick="setExample('police')"
+                    >
+                        Digital Arrest
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onclick="setExample('payment')"
+                    >
+                        Payment Request
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        {% if result %}
+
+
+        <!-- =========================
+             RISK OVERVIEW
+        ========================== -->
+
+        <section
+            class="section"
+            id="risk"
+        >
+
+
+            <div class="section-title">
+
+
+                <div>
+
+                    <div class="eyebrow">
+                        ANALYSIS COMPLETE
+                    </div>
+
+                    <h3>
+                        Threat Assessment
+                    </h3>
+
+                </div>
+
+
+                <span class="complete-badge">
+
+                    ✓ Analysis Complete
+
+                </span>
+
+
+            </div>
+
+
+
+            <!-- METRIC CARDS -->
+
+            <div class="metrics">
+
+
+                <!-- RISK SCORE -->
+
+                <div class="metric">
+
+
+                    <div class="metric-label">
+
+                        <span>
+                            ◉
+                        </span>
+
+                        RISK SCORE
+
+                    </div>
+
+
+                    <div class="score">
+
+                        <strong>
+                            {{ result.risk_score }}
+                        </strong>
+
+                        <span>
+                            / 100
+                        </span>
+
+                    </div>
+
+
+                    <div class="score-track">
+
+                        <div>
+                            style="width: {{ result.risk_score }}%"
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        Unified risk assessment
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- RISK LEVEL -->
+
+                <div class="metric">
+
+
+                    <div class="metric-label">
+
+                        <span>
+                            ◈
+                        </span>
+
+                        RISK LEVEL
+
+                    </div>
+
+
+                    <div
+                        class="risk-level
+                        {% if result.risk_level == 'CRITICAL' %}
+                            critical
+                        {% elif result.risk_level == 'HIGH' %}
+                            high
+                        {% elif result.risk_level == 'MEDIUM' %}
+                            medium
+                        {% else %}
+                            low
+                        {% endif %}"
+                    >
+
+                        {{ result.risk_level }}
+
+                    </div>
+
+
+                    <p>
+                        Current threat severity
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- SCAM TYPE -->
+
+                <div class="metric">
+
+
+                    <div class="metric-label">
+
+                        <span>
+                            ⌁
+                        </span>
+
+                        SCAM TYPE
+
+                    </div>
+
+
+                    <div class="scam-type">
+
+                        {{ result.scam_type }}
+
+                    </div>
+
+
+                    <p>
+                        Detected classification
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- RED FLAGS -->
+
+                <div class="metric">
+
+
+                    <div class="metric-label">
+
+                        <span>
+                            ⚑
+                        </span>
+
+                        RED FLAGS
+
+                    </div>
+
+
+                    <div class="flag-number">
+
+                        {{ result.red_flags|length }}
+
+                    </div>
+
+
+                    <p>
+                        Suspicious indicators found
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             RED FLAGS + SAFETY
+        ========================== -->
+
+        <section class="grid-2 section">
+
+
+            <!-- RED FLAGS -->
+
+            <div class="panel">
+
+
+                <div class="panel-title">
+
+
+                    <div class="panel-title-left">
+
+
+                        <span class="panel-icon danger">
+                            !
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Red Flags Detected
+                            </h3>
+
+                            <p>
+                                Signals identified by
+                                the detection engine
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <span class="count">
+
+                        {{ result.red_flags|length }}
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="flag-list">
+
+
+                    {% if result.red_flags %}
+
+
+                        {% for flag in result.red_flags %}
+
+
+                        <div class="flag-item">
+
+
+                            <span>
+                                !
+                            </span>
+
+
+                            <strong>
+                                {{ flag }}
+                            </strong>
+
+
+                        </div>
+
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="empty">
+
+                            No red flags detected.
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SAFETY -->
+
+            <div class="panel safety">
+
+
+                <div class="panel-title">
+
+
+                    <div class="panel-title-left">
+
+
+                        <span class="panel-icon safe">
+                            ✓
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Safety Recommendations
+                            </h3>
+
+                            <p>
+                                Actions recommended by
+                                GUARDIAN AI
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="recommendations">
+
+
+                    {% for recommendation in result.recommendations %}
+
+
+                    <div class="recommendation">
+
+
+                        <span>
+                            ✓
+                        </span>
+
+
+                        <p>
+                            {{ recommendation }}
+                        </p>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             AI ANALYSIS
+        ========================== -->
+
+        <section class="panel ai-panel section">
+
+
+            <div class="panel-title">
+
+
+                <div class="panel-title-left">
+
+
+                    <span class="panel-icon brain">
+                        ✦
+                    </span>
+
+
+                    <div>
+
+                        <h3>
+                            AI Analysis
+                        </h3>
+
+                        <p>
+                            Reasoning generated by the
+                            GUARDIAN AI analysis engine
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <span class="ai-badge">
+
+                    AI INSIGHT
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="ai-analysis">
+
+                {{ result.llm_analysis }}
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             TOOLS + EVIDENCE
+        ========================== -->
+
+        <section
+            class="grid-2 section"
+            id="evidence"
+        >
+
+
+            <!-- SELECTED TOOLS -->
+
+            <div class="panel">
+
+
+                <div class="panel-title">
+
+
+                    <div class="panel-title-left">
+
+
+                        <span class="panel-icon tool">
+                            ⚙
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Selected Tools
+                            </h3>
+
+                            <p>
+                                Tools used during this analysis
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="tool-list">
+
+
+                    {% if result.selected_tools %}
+
+
+                        {% for tool in result.selected_tools %}
+
+
+                        <div class="tool">
+
+
+                            <span>
+                                ✓
+                            </span>
+
+
+                            <code>
+                                {{ tool }}
+                            </code>
+
+
+                        </div>
+
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+
+                        <div class="empty">
+
+                            No tools selected.
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TOOL EVIDENCE -->
+
+            <div class="panel">
+
+
+                <div class="panel-title">
+
+
+                    <div class="panel-title-left">
+
+
+                        <span class="panel-icon evidence">
+                            ◫
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+                                Tool Evidence
+                            </h3>
+
+                            <p>
+                                Structured evidence returned
+                                by analysis tools
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="evidence">
+
+
+                    {% if result.evidence %}
+
+
+                    <pre>{{ result.evidence | tojson(indent=2) }}</pre>
+
+
+                    {% else %}
+
+
+                    <div class="empty">
+
+                        No additional evidence returned.
+
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             MEMORY
+        ========================== -->
+
+        <section
+            class="panel section"
+            id="memory"
+        >
+
+
+            <div class="panel-title">
+
+
+                <div class="panel-title-left">
+
+
+                    <span class="panel-icon memory">
+                        ◌
+                    </span>
+
+
+                    <div>
+
+                        <h3>
+                            Memory & Similar Cases
+                        </h3>
+
+                        <p>
+                            Relevant previous analysis
+                            retrieved from GUARDIAN AI memory
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                {% if result.memory_comparison
+                      and result.memory_comparison.similar_case_found %}
+
+
+                <span class="match-badge">
+
+                    SIMILAR CASE FOUND
+
+                </span>
+
+
+                {% else %}
+
+
+                <span class="no-match-badge">
+
+                    NO MATCH
+
+                </span>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            {% if result.memory_comparison
+                  and result.memory_comparison.matches %}
+
+
+            <div class="memory-list">
+
+
+                {% for match in result.memory_comparison.matches %}
+
+
+                <div class="memory-card">
+
+
+                    <div class="memory-top">
+
+
+                        <strong>
+
+                            Previous Case
+                            {{ loop.index }}
+
+                        </strong>
+
+
+                        <span
+                            class="memory-risk
+                            {% if match.previous_risk_level == 'CRITICAL' %}
+                                critical
+                            {% elif match.previous_risk_level == 'HIGH' %}
+                                high
+                            {% elif match.previous_risk_level == 'MEDIUM' %}
+                                medium
+                            {% else %}
+                                low
+                            {% endif %}"
+                        >
+
+                            {{ match.previous_risk_level }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    <div class="previous-message">
+
+                        {{ match.previous_message }}
+
+                    </div>
+
+
+
+                    <div class="memory-info">
+
+
+                        <span>
+
+                            Score:
+
+                            <b>
+                                {{ match.previous_risk_score }}
+                            </b>
+
+                        </span>
+
+
+                        <span>
+
+                            Type:
+
+                            <b>
+                                {{ match.previous_scam_type }}
+                            </b>
+
+                        </span>
+
+
+                    </div>
+
+
+
+                    {% if match.shared_indicators %}
+
+
+                    <div class="shared">
+
+
+                        <small>
+                            Shared indicators
+                        </small>
+
+
+                        <div class="tags">
+
+
+                            {% for indicator in match.shared_indicators %}
+
+
+                            <span>
+                                {{ indicator }}
+                            </span>
+
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <div class="memory-empty">
+
+
+                <div class="memory-empty-icon">
+                    ◌
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        No similar previous case found.
+                    </strong>
+
+                    <p>
+                        GUARDIAN AI did not find a relevant
+                        previous case for this analysis.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        {% else %}
+
+
+
+        <!-- =========================
+             INITIAL WELCOME
+        ========================== -->
+
+        <section class="welcome">
+
+
+            <div class="welcome-icon">
+
+
+                <div class="orbit one"></div>
+
+                <div class="orbit two"></div>
+
+
+                <div class="shield">
+                    🛡
+                </div>
+
+
+            </div>
+
+
+            <h3>
+                GUARDIAN AI is ready.
+            </h3>
+
+
+            <p>
+
+                Submit a suspicious message above
+                to start a complete AI-powered scam
+                and authority-impersonation analysis.
+
+            </p>
+
+
+            <div class="features">
+
+                <span>
+                    ◈ Rule Detection
+                </span>
+
+                <span>
+                    ✦ AI Analysis
+                </span>
+
+                <span>
+                    ⚙ Tool Evidence
+                </span>
+
+                <span>
+                    ◌ Memory
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        {% endif %}
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+
+            <strong>
+                GUARDIAN AI
+            </strong>
+
+
+            <span>
+                Digital Scam Protector
+            </span>
+
+
+            <span class="footer-note">
+
+                AI-assisted analysis • Always independently
+                verify authority claims
+
+            </span>
+
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================
+     LOADING OVERLAY
+========================== -->
+
+<div
+    class="loading-overlay"
+    id="loadingOverlay"
+>
+
+
+    <div class="loading-card">
+
+
+        <div class="loading-symbol">
+
+            <div></div>
+
+            <span>
+                ✦
+            </span>
+
+        </div>
+
+
+        <h3>
+            GUARDIAN AI is analyzing...
+        </h3>
+
+
+        <p>
+
+            Checking red flags, risk signals,
+            tools, and previous cases.
+
+        </p>
+
+
+        <div class="loading-track">
+
+            <div></div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>
